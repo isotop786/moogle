@@ -28,9 +28,6 @@
 </div>
 </form>
 </div>
-<div v-if="error">
-  <p>{{error}}</p>
-</div>
 <!-- is-offset-one-quarter  -->
 <div v-if="movies.length <= 3" class="content column is-half padding-x is-offset-one-quarter"  style="margin-top: 30px; padding-bottom: 0; margin-bottom: 15px;">
 
@@ -52,15 +49,35 @@
     <div class="box mp">
         <router-link :to="{name:'Single', params:{id:movie.id}}"><img class="image" :src="movie.image" alt=""></router-link>
     </div>  
+   
     </div>
   
 </div>
 
 </div>
 
-<div v-if="loading">
-data loading...
-</div>
+  <div class="columns p-4" v-if="loading">
+    <Loading/>
+  </div>
+
+  <div class="columns p-4" v-if="error">
+    <div class="column content is-half padding-x is-offset-one-quarter">
+      <div class="notification is-danger">
+        <p style="text-align:center">{{error}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns p-4">
+    
+  </div>
+<!-- <div class="columns p-4" v-if="loading">
+    <div class="content column is-half padding-x is-offset-one-quarter">
+      <p style="text-align:center">
+       <img src="../assets/movie_loading.gif" alt="">
+      </p>
+    </div>
+</div> -->
 <div id="mobile_home"></div>
 </div>
 <noscript>It appears that your Javascript is disabled. You might want to visit our
@@ -86,10 +103,12 @@ data loading...
 
 // import HelloWorld from '@/components/HelloWorld.vue'
 import axios from 'axios';
+import Loading from '../components/Loading'
 export default {
   name: 'Home',
   components: {
     // HelloWorld
+    Loading
   },
   data(){
     return{
@@ -103,6 +122,7 @@ export default {
   methods:{
     search(){
       if(this.keyword){
+        this.movies = []
         this.error = null
          this.loading = true
        const options = {

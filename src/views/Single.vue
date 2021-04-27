@@ -1,5 +1,9 @@
 <template>
-  <div class="">
+<div>
+<div class="columns p-4" v-if="!loading">
+  <Loading/>
+</div>
+  <div v-else class="">
      <Navbar/>
      <div class="container bm">
 
@@ -28,7 +32,7 @@
   </ul>
   <h3 class="title is-2 has-text-primary">Technical Spcifications</h3>
   <ol>
-    <li v-for="s in movie.technical_specs" :key="s.id">{{s[0]}} : {{s[1]}}} </li>
+    <li v-for="s in movie.technical_specs" :key="s.id">{{s[0]}} : {{s[1]}} </li>
   </ol>
 </div>
 
@@ -37,26 +41,29 @@
 </div>
   </div>
    </div>
- 
+ </div>
 </template>
 
 <script>
 import Navbar from '../components/Nav'
+import Loading from '../components/Loading'
 import axios from 'axios';
 export default {
 name:"Single",
 components:{
-  Navbar
+  Navbar,
+  Loading
 },
 data(){
     return{
         movie:{},
-        wiki: 'https://en.wikipedia.org/wiki/'
+        wiki: 'https://en.wikipedia.org/wiki/',
+        loading:false
     }
 },
 created(){
     console.log('created')
-
+  
 const options = {
   method: 'GET',
   url: `https://imdb-internet-movie-database-unofficial.p.rapidapi.com/film/${this.$route.params.id}`,
@@ -69,10 +76,13 @@ const options = {
 axios.request(options).then( (response)=> {
 	console.log(response.data);
 
+    this.loading = true
     this.movie = response.data
 }).catch(function (error) {
 	console.error(error);
 });
+
+this.loading = false
 }
 }
 </script>
