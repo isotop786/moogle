@@ -10,10 +10,15 @@
 
   <div class="navbar-end">
       <div class="navbar-item">
-        <div class="">
+        <div v-if="!isAabout"  class="">
           
           <router-link to="/about" class="button is-danger">
             About
+          </router-link>
+        </div>
+        <div v-else>
+                <router-link to="/" class="button is-info">
+            Home
           </router-link>
         </div>
       </div>
@@ -25,7 +30,17 @@
 
 <script>
 export default {
-name:"Navbar"
+name:"Navbar",
+data(){
+    return{
+        isAabout: false
+    }
+},
+created(){
+    if(this.$route.path =="/about"){
+        this.isAabout = true
+    }
+}
 }
 </script>
 
