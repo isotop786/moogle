@@ -37,7 +37,7 @@ itme 3
 <div class="columns">
   <div class="column is-one-third my-3" v-for="movie in movies" :key="movie.id">
     <div class="box mp">
-        <router-link to="/single/:id"><img class="image" :src="movie.image" alt=""></router-link>
+        <router-link :to="{name:'Single', params:{id:movie.id}}"><img class="image" :src="movie.image" alt=""></router-link>
     </div>  
     </div>
   
