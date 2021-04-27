@@ -6,7 +6,7 @@
     
        <div class="columns mt-5 px-4">
            <div class="column">
-               <router-link to="/" class="button is-primary ">Back to Search</router-link> 
+               <router-link to="/" class="button is-warning ">Back to Search</router-link> 
            </div>
        </div>
          <div class="columns px-4"  style="margin-top: 10px; padding-bottom: 0; margin-bottom: 15px;">
@@ -18,10 +18,13 @@
 <div class="content">
   <h1 class="title is-1 has-text-primary">{{movie.title}}</h1>
   <p>{{movie.plot}}</p>
-  <a :href="movie.trailer.link" target="_blank" class="button is-link">Watch Trailer</a>
+  <h2 v-if="movie.year" class="has-text-success">Release Year: {{movie.year}}</h2>
+  <h3 class="has-text-info">Rating: {{movie.rating}}</h3>
+  <h3 class="has-text-danger">Length: {{movie.length}}</h3>
+  <a :href="movie.trailer.link" target="_blank" v-if="movie.trailer.link" class="button is-link">Watch Trailer</a>
  <h2 class="title is-2 has-text-primary">Casts</h2>
   <ul>
-    <li v-for="c in movie.cast" :key="c.id"> <span class="has-text-dark"> <a :href="'//'"></a> {{c.actor}} </span> as <span class="has-text-danger"> {{c.character}} </span></li>
+    <li v-for="c in movie.cast" :key="c.id"> <span class="has-text-dark"> <a target="_blank" :href="wiki+c.actor">{{c.actor}}</a>  </span> as <span class="has-text-danger"> {{c.character}} </span></li>
   </ul>
   <h3 class="title is-2 has-text-primary">Technical Spcifications</h3>
   <ol>
@@ -47,7 +50,8 @@ components:{
 },
 data(){
     return{
-        movie:{}
+        movie:{},
+        wiki: 'https://en.wikipedia.org/wiki/'
     }
 },
 created(){
