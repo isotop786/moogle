@@ -1,7 +1,7 @@
 <template>
   <div >
     <Navbar/>
-    <div class="container mt-6">
+    <div class="container mt-6 p-3">
      <div class="content is-medium">
     <h1 class="title ">About the Application</h1>
     <p>

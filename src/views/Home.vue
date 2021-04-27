@@ -3,8 +3,7 @@
     <div id="page_style" class="Site-content page__style page__description">
 <div id="home_content">
 <div class="content column is-half is-offset-6" style="text-align: right">
-itme  
-itme 3
+<router-link class="px-5 button is-primary" to='/about'>About</router-link>
 </div>
 <div id="home_padding"></div>
 <div style="text-align: center;">
@@ -32,7 +31,21 @@ itme 3
 <div v-if="error">
   <p>{{error}}</p>
 </div>
-<div class="content column is-half is-offset-one-quarter" style="margin-top: 30px; padding-bottom: 0; margin-bottom: 15px;">
+<!-- is-offset-one-quarter  -->
+<div v-if="movies.length <= 3" class="content column is-half padding-x is-offset-one-quarter"  style="margin-top: 30px; padding-bottom: 0; margin-bottom: 15px;">
+
+<div class="columns">
+  <div class="column is-one-third my-3" v-for="movie in movies" :key="movie.id">
+    <div class="box mp">
+        <router-link :to="{name:'Single', params:{id:movie.id}}"><img class="image" :src="movie.image" alt=""></router-link>
+    </div>  
+    </div>
+  
+</div>
+
+</div>
+
+<div v-else class="content column is-one-quarter padding-x "  style="margin-top: 30px; padding-bottom: 0; margin-bottom: 15px;">
 
 <div class="columns">
   <div class="column is-one-third my-3" v-for="movie in movies" :key="movie.id">
@@ -122,6 +135,9 @@ export default {
   }
 }
 </script>
-<style >
-
+<style scoped>
+.padding-x{
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
 </style>
