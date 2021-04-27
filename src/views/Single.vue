@@ -74,7 +74,7 @@ const options = {
 };
 
 axios.request(options).then( (response)=> {
-	console.log(response.data);
+	// console.log(response.data);
 
     this.loading = true
     this.movie = response.data

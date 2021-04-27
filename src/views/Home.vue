@@ -137,14 +137,14 @@ export default {
                   axios.request(options).then( (response)=> {
                       // console.log(response.data);
                       this.movies = response.data.titles
-                      console.log(this.movies)
+                      // console.log(this.movies)
                       this.loading = false
                   }).catch((error)=> {
                     this.error = error
                       console.error(error);
                   });
                   
-                  console.log(this.loading)
+                  // console.log(this.loading)
       }else{
         this.error = "Can not be empty."
       }
