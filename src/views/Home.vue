@@ -15,8 +15,9 @@
 <form>
 <div class="field has-addons">
 <div class="control is-expanded">
+  <!-- @keydown.enter.prevent="search" -->
 <input v-model="keyword"
-  @keydown.enter.prevent="search"
+  @keyup.prevent="search"
  id="search_query" class="input is-primary is-medium" type="search" placeholder="Search for any Movie, TV Shows" name="Search" autofocus="autofocus" onfocus="this.select()" required>
 </div>
 <div class="control">
@@ -29,7 +30,7 @@
 </form>
 </div>
 <!-- is-offset-one-quarter  -->
-<div v-if="movies.length <= 3" class="content column is-half padding-x is-offset-one-quarter"  style="margin-top: 30px; padding-bottom: 0; margin-bottom: 15px;">
+<div v-if="movies.length <= 4" class="content column is-half padding-x is-offset-one-quarter"  style="margin-top: 30px; padding-bottom: 0; margin-bottom: 15px;">
 
 <div class="columns">
   <div class="column is-one-third my-3" v-for="movie in movies" :key="movie.id">
